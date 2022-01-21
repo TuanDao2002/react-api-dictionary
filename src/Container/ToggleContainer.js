@@ -1,7 +1,7 @@
 import React from "react";
-import { Toggle } from "../Presentational/toggleTheme";
+import { ToggleButton } from "../Presentational/toggleTheme";
 
-export class ToggleContainer extends React.Component {
+export class ChangeThemeContainer extends React.Component {
     constructor(props) {
         super(props);
     
@@ -10,13 +10,13 @@ export class ToggleContainer extends React.Component {
 
     changeTheme() {
         if (this.props.theme === 'light') {
-            this.props.getTheme('dark');
+            this.props.setTheme('dark');
         } else if (this.props.theme === 'dark') {
-            this.props.getTheme('light' );
+            this.props.setTheme('light' );
         }
     }
 
     render() {
-        return <Toggle theme={this.props.theme} onClick={this.changeTheme} />
+        return <ToggleButton theme={this.props.theme} onClick={this.changeTheme} />
     }
 }

@@ -1,5 +1,5 @@
 import React from 'react';
-import { ToggleContainer } from './Container/ToggleContainer';
+import { ChangeThemeContainer } from './Container/ToggleContainer';
 
 export class App extends React.Component {
   constructor(props) {
@@ -8,7 +8,7 @@ export class App extends React.Component {
         theme: window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark',
     }
 
-    this.getTheme = this.getTheme.bind(this);
+    this.setTheme = this.setTheme.bind(this);
   }
 
   // set the theme in localStorage if there is one, otherwise use the prefer color scheme of the media
@@ -23,7 +23,7 @@ export class App extends React.Component {
       localStorage.setItem('theme', this.state.theme);
   }
 
-  getTheme(theme) {
+  setTheme(theme) {
     this.setState({theme: theme});
   }
 
@@ -48,7 +48,7 @@ export class App extends React.Component {
                 </div>
             </div>
 
-            <ToggleContainer theme={this.state.theme} getTheme={this.getTheme}/>
+            <ChangeThemeContainer theme={this.state.theme} setTheme={this.setTheme}/>
         </main>
     )
   }

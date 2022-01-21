@@ -1,6 +1,6 @@
 import React from 'react';
 
-export function Toggle(props) {
+export function ToggleButton(props) {
 
     let nextTheme;
 
