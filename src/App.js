@@ -1,31 +1,30 @@
 import React from 'react';
-import { Toggle } from './Presentational/toggleTheme';
+import { ToggleContainer } from './Container/ToggleContainer';
 
 export class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-        theme: localStorage.getItem('theme'),
+        theme: window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark',
     }
 
-    this.changeTheme = this.changeTheme.bind(this);
+    this.getTheme = this.getTheme.bind(this);
   }
 
-  // store the theme in localStorage so it cannot be changed when reload
+  // set the theme in localStorage if there is one, otherwise use the prefer color scheme of the media
   componentDidMount() {
-      localStorage.setItem('theme', this.state.theme);
+    if (localStorage.getItem('theme')) {
+        this.setState({theme: localStorage.getItem('theme')})
+    } 
   }
 
+  //store the theme in localStorage so it cannot be changed when reload
   componentDidUpdate() {
       localStorage.setItem('theme', this.state.theme);
   }
 
-  changeTheme() {
-      if (this.state.theme === 'light') {
-          this.setState({ theme: 'dark' });
-      } else if (this.state.theme === 'dark') {
-          this.setState({ theme:'light' });
-      }
+  getTheme(theme) {
+    this.setState({theme: theme});
   }
 
   render() {
@@ -47,9 +46,9 @@ export class App extends React.Component {
                 <div id="responseField">
                     <p id="def">Definition</p>
                 </div>
-
-                <Toggle theme={this.state.theme} onClick={this.changeTheme} />
             </div>
+
+            <ToggleContainer theme={this.state.theme} getTheme={this.getTheme}/>
         </main>
     )
   }
