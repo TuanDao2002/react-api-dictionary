@@ -20,7 +20,7 @@
     --heading-response-color: rgba(245, 147, 245, 0.733);
 }
 
-html {
+html, #root {
     height: 100%;
 }
 

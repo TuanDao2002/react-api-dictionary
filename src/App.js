@@ -1,11 +1,31 @@
 import React from 'react';
+import { Toggle } from './Presentational/toggleTheme';
 
 export class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-        theme: 'light',
+        theme: localStorage.getItem('theme'),
     }
+
+    this.changeTheme = this.changeTheme.bind(this);
+  }
+
+  // store the theme in localStorage so it cannot be changed when reload
+  componentDidMount() {
+      localStorage.setItem('theme', this.state.theme);
+  }
+
+  componentDidUpdate() {
+      localStorage.setItem('theme', this.state.theme);
+  }
+
+  changeTheme() {
+      if (this.state.theme === 'light') {
+          this.setState({ theme: 'dark' });
+      } else if (this.state.theme === 'dark') {
+          this.setState({ theme:'light' });
+      }
   }
 
   render() {
@@ -28,8 +48,7 @@ export class App extends React.Component {
                     <p id="def">Definition</p>
                 </div>
 
-                <button id="toggle">Switch to DARK mode!</button>
-
+                <Toggle theme={this.state.theme} onClick={this.changeTheme} />
             </div>
         </main>
     )
