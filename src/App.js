@@ -1,13 +1,16 @@
 import React from 'react';
 
 export class App extends React.Component {
-  // constructor(props) {
-  //   super(props);
-  // }
+  constructor(props) {
+    super(props);
+    this.state = {
+        theme: 'light',
+    }
+  }
 
   render() {
     return (
-        <main data-theme='dark'>
+        <main data-theme={this.state.theme}>
             <header>
                 <h1 id='pagename'>Dictionary</h1>
             </header>
