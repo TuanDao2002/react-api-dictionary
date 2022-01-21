@@ -1,17 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
+import './App.css';
 
-class Main extends React.Component {
-  render() {
-    return (
-      <h1>Main</h1>
-    )
-  }
-}
+import { App } from '../src/App';
 
 ReactDOM.render(
-  <Main />,
+  <App />,
   document.getElementById('root')
 );
 
