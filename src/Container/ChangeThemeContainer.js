@@ -1,5 +1,5 @@
 import React from "react";
-import { ToggleButton } from "../Presentational/toggleTheme";
+import { ToggleButton } from "../Presentational/ToggleButton";
 
 export class ChangeThemeContainer extends React.Component {
     constructor(props) {

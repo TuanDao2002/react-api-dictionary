@@ -1,11 +1,11 @@
 import React from 'react';
-import { ChangeThemeContainer } from './Container/ToggleContainer';
+import { ChangeThemeContainer } from './Container/ChangeThemeContainer';
 
 export class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-        theme: window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark',
+        theme: (window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches) ? 'light' : 'dark',
     }
 
     this.setTheme = this.setTheme.bind(this);
