@@ -1,6 +1,7 @@
 import React from 'react';
 import { ChangeThemeContainer } from './Container/ChangeThemeContainer';
 import { InputContainer } from './Container/InputContainer';
+import { ResponseContainer } from './Container/ResponseContainer';
 
 const url = "https://api.dictionaryapi.dev/api/v2/entries/en_US/";
 
@@ -55,11 +56,7 @@ export class App extends React.Component {
 
             <div className="container">
                 <InputContainer onChange={this.setInput} onSubmit={this.setEndpoint}/>
-
-                <div id="responseField">
-                    <p id="def">Definition</p>
-                    <p>{this.state.endpoint}</p>
-                </div>
+                <ResponseContainer endpoint={this.state.endpoint}/>
             </div>
 
             <ChangeThemeContainer theme={this.state.theme} setTheme={this.setTheme}/>
