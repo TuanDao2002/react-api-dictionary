@@ -5,6 +5,11 @@ export function ResponseContainer(props) {
     const [response, setResponse] = useState("");
 
     useEffect(() => {
+        if (props.endpoint === "") {
+            setResponse("");
+            return;
+        }
+        
         setResponse("Waiting");
         const xhr = new XMLHttpRequest();
         xhr.responseType = 'json';
