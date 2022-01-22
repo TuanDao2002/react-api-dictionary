@@ -1,14 +1,21 @@
 import React from 'react';
 import { ChangeThemeContainer } from './Container/ChangeThemeContainer';
+import { InputContainer } from './Container/InputContainer';
+
+const url = "https://api.dictionaryapi.dev/api/v2/entries/en_US/";
 
 export class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
         theme: (window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches) ? 'light' : 'dark',
+        input: "",
+        endpoint: "",
     }
 
     this.setTheme = this.setTheme.bind(this);
+    this.setInput = this.setInput.bind(this);
+    this.setEndpoint = this.setEndpoint.bind(this);
   }
 
   // set the theme in localStorage if there is one, otherwise use the prefer color scheme of the media
@@ -27,6 +34,18 @@ export class App extends React.Component {
     this.setState({theme: theme});
   }
 
+  setInput(input) {
+    this.setState({input: input});
+  }
+
+  setEndpoint() {
+    if (this.state.input === '') {
+      this.setState({endpoint: ''});
+      return;
+    } 
+    this.setState({endpoint: url + this.state.input});
+  }
+
   render() {
     return (
         <main data-theme={this.state.theme}>
@@ -35,16 +54,11 @@ export class App extends React.Component {
             </header>
 
             <div className="container">
-
-                <h1 id="prompt">Enter a Word</h1>
-
-                <form id="form" autoComplete="off">
-                    <input type="text" id="input" placeholder="Type in a word" />
-                    <button id="submit">SUBMIT</button>
-                </form>
+                <InputContainer onChange={this.setInput} onSubmit={this.setEndpoint}/>
 
                 <div id="responseField">
                     <p id="def">Definition</p>
+                    <p>{this.state.endpoint}</p>
                 </div>
             </div>
 
