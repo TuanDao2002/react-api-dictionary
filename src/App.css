@@ -122,6 +122,14 @@ h1 {
     color: #ffffff;
     overflow-wrap: break-word;
     overflow-y: scroll;
+
+    /*Hide scrollbar*/
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+#responseField::-webkit-scrollbar {
+    display: none;
 }
 
 #submit:hover, #toggle:hover{
