@@ -25,6 +25,15 @@ export function ResponseField(props) {
             ) 
         }
 
+        if (response === "Server error") {
+            return(
+                <>
+                    <p id='warning'>There is internal error in the server</p>
+                    <p id='warning'>Refresh the page</p>
+                </>
+            ) 
+        }
+
         let wordDefinitions = [];
         response.forEach((dictionaryObject, index) => {
             const len = dictionaryObject.meanings.length;

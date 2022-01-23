@@ -24,9 +24,12 @@ export function ResponseContainer(props) {
                     setResponse(xhr.response);
                 } else if (status === 404) {
                     setResponse("Not found");
+                } else if (status === 500) {
+                    setResponse("Server error");
                 }
             } 
         };
+
     }, [props.endpoint])
 
     
