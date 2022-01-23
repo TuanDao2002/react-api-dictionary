@@ -21,6 +21,7 @@ export function ResponseField(props) {
                 <>
                     <p id='warning'>Try again!</p>
                     <p id='warning'>There is no definition for this word</p>
+                    <p id='warning'>If the connection is poor, refresh the page and type again</p>
                 </>
             ) 
         }
