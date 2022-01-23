@@ -1,6 +1,15 @@
-import React from "react";
+import React, { useState } from "react";
 
 export function ResponseField(props) {
+    const [scrollable, setScrollable] = useState(null);
+
+    // choose the element that can be overflow and set scrollable state
+    const setElement = (element) => {
+        if (!element) return;
+        const { clientHeight, scrollHeight } = element;
+        setScrollable(clientHeight < scrollHeight);
+    }
+
     const renderResponse = () => {
         const response = props.response;
 
@@ -54,13 +63,14 @@ export function ResponseField(props) {
         })
             
         return <div id="display">{wordDefinitions}</div>
-
     }
 
     return (
-        <div id="responseField">
-            <p id="def">Definition </p>
+        // use ref attribute to get the element
+        <div ref={element => setElement(element)} id="responseField"> 
+            <p id="def">Definition</p>
             {renderResponse()}
+            {scrollable ? <p id="element">scroll</p> : <p id="element">cannot scroll</p>}
         </div>
     )
 }
