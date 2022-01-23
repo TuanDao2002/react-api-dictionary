@@ -1,10 +1,14 @@
 import React from "react";
 
 export function ResponseField(props) {
-    const handleResponse = () => {
+    const renderResponse = () => {
         const response = props.response;
 
-        if (!response) {
+        if (response === null) {
+            return;
+        }
+
+        if (response === "") {
             return <p id='warning'>You have not typed a word</p>;
         }
 
@@ -46,7 +50,7 @@ export function ResponseField(props) {
     return (
         <div id="responseField">
             <p id="def">Definition </p>
-            {handleResponse()}
+            {renderResponse()}
         </div>
     )
 }

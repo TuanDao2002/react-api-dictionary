@@ -11,7 +11,7 @@ export class App extends React.Component {
     this.state = {
         theme: (window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches) ? 'light' : 'dark',
         input: "",
-        endpoint: "",
+        endpoint: null,
     }
 
     this.setTheme = this.setTheme.bind(this);
