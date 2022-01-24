@@ -3,25 +3,29 @@ import React, { useEffect, useState } from "react";
 export function ResponseField(props) {
     const [scrollable, setScrollable] = useState(null); // check if it can be scrollable
     const [bottom, setBottom] = useState(null);
-    // use createRef() to create new ref after every re-render (after every new word)
-    const elementRef = React.createRef();
-    // get the element through ref and check if it can be scrollable
+
+    /* createRef() or useRef() is not suitable here as useEffect() can re-render many times which affects the state */ 
+    
+    // after a new response is rendered, set the state "bottom" to false to display the message if the div is overflow
     useEffect(() => {
-        const node = elementRef.current;
-        if (!node) return;
-        const {clientHeight, scrollHeight } = node;
+        setBottom(false);
+    }, [props.response]) 
+
+    // get the new ref and check if it is scrollable
+    const setElement = (element) => {
+        if (!element) return;
+        const { clientHeight, scrollHeight } = element;
         setScrollable(clientHeight < scrollHeight);
-        // setBottom(false);
-    }, [elementRef]) // after a new re-render, elementRef will be changed and calculated to check if it is overflow
+    }
 
-    const checkScrollBottom = ( {target} ) => {
+    const handleScroll = ( e ) => {
         if (!scrollable) return;
-        const { offsetHeight, scrollHeight, scrollTop } = target;
+        const { offsetHeight, scrollHeight, scrollTop } = e.target;
 
-        // the height of "scroll" div (px)
+        // the height of div "scroll" (px)
         let scrollDivHeight = 20;
         
-        // rounding and use precision method
+        // rounding the values and use precision method
         setBottom(Math.round(scrollTop + offsetHeight) >= scrollHeight - scrollDivHeight);
     } 
 
@@ -84,9 +88,10 @@ export function ResponseField(props) {
     return (
         // use ref attribute to get the element
         <>
-            <div ref={elementRef} id="responseField" onScroll={checkScrollBottom}> 
+            <div ref={elementRef => setElement(elementRef)} id="responseField" onScroll={handleScroll}> 
                 <p id="def">Definition</p>
                 {renderResponse()}
+
                 {/* if the responseField is overflow and user has not scrolled to bottom, display this */}
                 {scrollable && !bottom && <div id="scroll">Scroll to view more</div>}
             </div>
