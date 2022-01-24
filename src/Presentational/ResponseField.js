@@ -1,17 +1,29 @@
 import React, { useEffect, useState } from "react";
 
 export function ResponseField(props) {
-    const [scrollable, setScrollable] = useState(null);
-
+    const [scrollable, setScrollable] = useState(null); // check if it can be scrollable
+    const [bottom, setBottom] = useState(null);
     // use createRef() to create new ref after every re-render (after every new word)
     const elementRef = React.createRef();
     // get the element through ref and check if it can be scrollable
     useEffect(() => {
         const node = elementRef.current;
         if (!node) return;
-        const { clientHeight, scrollHeight } = node;
+        const {clientHeight, scrollHeight } = node;
         setScrollable(clientHeight < scrollHeight);
+        // setBottom(false);
     }, [elementRef]) // after a new re-render, elementRef will be changed and calculated to check if it is overflow
+
+    const checkScrollBottom = ( {target} ) => {
+        if (!scrollable) return;
+        const { offsetHeight, scrollHeight, scrollTop } = target;
+
+        // the height of "scroll" div (px)
+        let scrollDivHeight = 20;
+        
+        // rounding and use precision method
+        setBottom(Math.round(scrollTop + offsetHeight) >= scrollHeight - scrollDivHeight);
+    } 
 
     const renderResponse = () => {
         const response = props.response;
@@ -71,10 +83,13 @@ export function ResponseField(props) {
 
     return (
         // use ref attribute to get the element
-        <div ref={elementRef} id="responseField"> 
-            <p id="def">Definition</p>
-            {renderResponse()}
-            {scrollable ? <p className="element">scroll</p> : <p className="element">cannot scroll</p>}
-        </div>
+        <>
+            <div ref={elementRef} id="responseField" onScroll={checkScrollBottom}> 
+                <p id="def">Definition</p>
+                {renderResponse()}
+                {/* if the responseField is overflow and user has not scrolled to bottom, display this */}
+                {scrollable && !bottom && <div id="scroll">Scroll to view more</div>}
+            </div>
+        </>
     )
 }

@@ -1,11 +1,10 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { Form } from '../Presentational/Form';
 
 export function InputContainer(props) {
-    const [valid, setValid] = useState(true);
-    useEffect(() => {
-        setValid(/^[A-Za-z\s]*$/.test(props.input));
-    }, [props.input])
+
+    // check if the input contains only characters or spaces
+    const valid = /^[A-Za-z\s]*$/.test(props.input);
 
     return <Form valid={valid} onChange={props.onChange} onSubmit={props.onSubmit}/>
 }
