@@ -108,6 +108,11 @@ h1 {
     color: var(--submit-color);
 }
 
+#submit:disabled {
+    background-color: gray;
+    color: black;
+}
+
 #responseField {
     min-width: 191px;
     max-height: 320px;

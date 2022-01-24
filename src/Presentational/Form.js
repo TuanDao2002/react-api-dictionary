@@ -17,7 +17,10 @@ export function Form(props) {
 
             <form id="form" autoComplete="off" onSubmit={handleSubmit}>
                 <input type="text" id="input" onChange={handleChange} placeholder="Type in a word" />
-                <button id="submit" type='submit'>SUBMIT</button>
+
+                {/*if the input is not valid, disable the button*/}
+                {!props.valid && <h4 style={{color: "whitesmoke", fontWeight: "bolder"}}>The word should include only characters or space</h4>}
+                <button id="submit" type='submit' disabled={!props.valid}>SUBMIT</button> 
             </form>
         </>
     )

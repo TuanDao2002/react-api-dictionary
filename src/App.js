@@ -55,7 +55,7 @@ export class App extends React.Component {
             </header>
 
             <div className="container">
-                <InputContainer onChange={this.setInput} onSubmit={this.setEndpoint}/>
+                <InputContainer input={this.state.input} onChange={this.setInput} onSubmit={this.setEndpoint}/>
                 <ResponseContainer endpoint={this.state.endpoint}/>
             </div>
 
