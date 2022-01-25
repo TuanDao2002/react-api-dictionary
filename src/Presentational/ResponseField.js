@@ -22,8 +22,8 @@ export function ResponseField(props) {
         if (!scrollable) return;
         const { offsetHeight, scrollHeight, scrollTop } = e.target;
 
-        // the height of div "scroll" (px)
-        let scrollDivHeight = 20;
+        // the height of div "scroll" + padding (px) (relatively)
+        let scrollDivHeight = 30;
         
         // rounding the values and use precision method
         setBottom(Math.round(scrollTop + offsetHeight) >= scrollHeight - scrollDivHeight);
@@ -41,7 +41,7 @@ export function ResponseField(props) {
         }
 
         if (response === "Waiting") {
-            return <h3 style= {{textAlign: "center"}}>Loading...</h3>;
+            return <h3 className="loading">Loading <i className="fa fa-spinner fa-spin"></i></h3>;
         }
 
         if (response === "Not found") {
