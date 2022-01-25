@@ -1,7 +1,9 @@
 # react-api-dictionary
 A dictionary website using React
 
-* Technologies used: ReactJS and Font Awesome
+* Technologies used: 
+  * ReactJS
+  * Font Awesome
 * Functionalities:
   * Allow users to search for the definition of a word
   * Warn users if the word entered is not valid (the word can only include characters or space)
