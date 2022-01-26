@@ -66,6 +66,7 @@ h1 {
 
 h3, p {
     font-size: 0.4rem;
+    margin: 0;
 }
 
 .container {
@@ -127,7 +128,7 @@ form {
 
 #responseField {
     width: 30%;
-    max-height: 45vh;
+    height: 45vh;
     background-color: #1f233e;
     margin: 0.5rem auto;
     font-family: Source Sans Pro;
@@ -222,17 +223,32 @@ form {
     font-size: 0.4rem;
 }
 
-#scroll {
+#scroll{
     text-align: center;
     background-color: white;
     color: rgb(85, 85, 85);
     font-weight: bolder;
-    font-size: 0.4rem;
+    font-size: 0.1rem;
+    padding: 2.5px;
 
     /* fix at the bottom of overflow div */
     position: sticky;
     bottom: 0;
     z-index: 99;
+}
+
+/* Create up arrow */
+.arrow {
+    border: solid black;
+    border-width: 0 3px 3px 0;
+    display: inline-block;
+    padding: 3px;
+    margin: 5px 0 -2.5px 0;
+}
+
+.up {
+    transform: rotate(-135deg);
+    -webkit-transform: rotate(-135deg);
 }
 
 /* Responsive */
