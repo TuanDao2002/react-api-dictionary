@@ -229,12 +229,12 @@ form {
     color: rgb(85, 85, 85);
     font-weight: bolder;
     font-size: 0.1rem;
-    padding: 2.5px;
 
     /* fix at the bottom of overflow div */
     position: sticky;
     bottom: 0;
     z-index: 99;
+    
 }
 
 /* Create up arrow */
@@ -243,7 +243,7 @@ form {
     border-width: 0 3px 3px 0;
     display: inline-block;
     padding: 3px;
-    margin: 5px 0 -2.5px 0;
+    margin: 5px 0 -3px 0;
 }
 
 .up {
