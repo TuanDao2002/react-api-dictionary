@@ -38,6 +38,13 @@ export function ResponseField(props) {
                 </div>
             )
         }
+
+        return (
+            <div id="scroll">
+                <i className="arrow up"></i>
+                <h3>Scroll to view more</h3>
+            </div>
+        )
     }
 
     const renderResponse = () => {
