@@ -37,7 +37,7 @@ body, #root {
 header {
     text-align: center;
     background-color: var(--background-color);
-    height: 2rem;
+    height: 10%;
 
     display: flex;
     justify-content: center;
