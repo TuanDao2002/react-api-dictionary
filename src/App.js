@@ -57,9 +57,9 @@ export class App extends React.Component {
             <div className="container">
                 <InputContainer input={this.state.input} onChange={this.setInput} onSubmit={this.setEndpoint}/>
                 <ResponseContainer endpoint={this.state.endpoint}/>
+                <ChangeThemeContainer theme={this.state.theme} setTheme={this.setTheme}/>
             </div>
 
-            <ChangeThemeContainer theme={this.state.theme} setTheme={this.setTheme}/>
         </main>
     )
   }

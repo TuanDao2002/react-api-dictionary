@@ -53,6 +53,7 @@ main {
     background-color: var(--background-color);
     height: 100%;
     text-align: center;
+    padding: 2.5% 0;
 }
 
 h1 {
