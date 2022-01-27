@@ -232,6 +232,9 @@ form {
 
     /* fix at the bottom of overflow div */
     position: sticky;
+    
+    /* for safari browser */
+    position: -webkit-sticky;
     bottom: 0;
     z-index: 99;
     
