@@ -94,11 +94,13 @@ export function ResponseField(props) {
 
                 {/* if the responseField is overflow and user has not scrolled to bottom, display this */}
                 {scrollable && !bottom && 
-                    <div id="scroll">
-                        <i className="arrow up"></i>
-                        <h3>Scroll to view more</h3>
-                    </div>
+                    
                 }
+            </div>
+
+            <div id="scroll">
+                <i className="arrow up"></i>
+                <h3>Scroll to view more</h3>
             </div>
         </>
     )
