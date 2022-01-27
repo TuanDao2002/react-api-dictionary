@@ -12,6 +12,7 @@ export class App extends React.Component {
         theme: (window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches) ? 'light' : 'dark',
         input: "",
         endpoint: null,
+        submit: false,
     }
 
     this.setTheme = this.setTheme.bind(this);
@@ -45,6 +46,13 @@ export class App extends React.Component {
       return;
     } 
     this.setState({endpoint: url + this.state.input});
+
+    // toggle to change the state submit => allow ResponseContainer to render again
+    if (this.state.submit) {
+      this.setState({submit: false});
+    } else {
+      this.setState({submit: true});
+    }
   }
 
   render() {
@@ -56,7 +64,7 @@ export class App extends React.Component {
 
             <div className="container">
                 <InputContainer input={this.state.input} onChange={this.setInput} onSubmit={this.setEndpoint}/>
-                <ResponseContainer endpoint={this.state.endpoint}/>
+                <ResponseContainer endpoint={this.state.endpoint} submit={this.state.submit}/>
                 <ChangeThemeContainer theme={this.state.theme} setTheme={this.setTheme}/>
             </div>
 

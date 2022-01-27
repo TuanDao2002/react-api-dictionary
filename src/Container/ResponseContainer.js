@@ -30,7 +30,7 @@ export function ResponseContainer(props) {
             } 
         };
 
-    }, [props.endpoint])
+    }, [props.endpoint, props.submit])
 
     
     return <ResponseField response={response}/>

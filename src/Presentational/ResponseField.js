@@ -49,7 +49,7 @@ export function ResponseField(props) {
                 <>
                     <p className='warning'>Try again!</p>
                     <p className='warning'>Cannot find the definition for this word</p>
-                    <p className='warning'>If the connection is poor, refresh the page and type again</p>
+                    <p className='warning'>If due to the poor connection, submit again to refresh</p>
                 </>
             ) 
         }
