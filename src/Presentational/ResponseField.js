@@ -20,13 +20,13 @@ export function ResponseField(props) {
 
     const handleScroll = ( e ) => {
         if (!scrollable) return;
-        const { offsetHeight, scrollHeight, scrollTop } = e.target;
+        const { clientHeight, scrollHeight, scrollTop } = e.target;
 
         // the height of div "scroll" + padding (px) (relatively)
         let scrollDivHeight = 30;
         
         // rounding the values and use precision method
-        setBottom(Math.round(scrollTop + offsetHeight) >= scrollHeight - scrollDivHeight);
+        setBottom(Math.round(scrollTop + clientHeight) >= scrollHeight - scrollDivHeight);
     } 
 
     const renderResponse = () => {
