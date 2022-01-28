@@ -2,9 +2,10 @@ import React from 'react';
 import { Form } from '../Presentational/Form';
 
 export function InputContainer(props) {
+    const {input, onChange, onSubmit} = props;
 
     // check if the input contains only characters or spaces
-    const valid = /^[A-Za-z\s]*$/.test(props.input);
+    const valid = /^[A-Za-z\s]*$/.test(input);
 
-    return <Form valid={valid} onChange={props.onChange} onSubmit={props.onSubmit}/>
+    return <Form valid={valid} onChange={onChange} onSubmit={onSubmit}/>
 }
