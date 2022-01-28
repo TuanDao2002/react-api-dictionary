@@ -3,6 +3,7 @@ A dictionary website using React
 
 * Technologies used: 
   * ReactJS
+  * Axios
   * Font Awesome
 * Functionalities:
   * Allow users to search for the definition of a word by fetching an external API
