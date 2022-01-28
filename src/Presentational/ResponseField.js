@@ -57,6 +57,9 @@ export function ResponseField(props) {
         // process and display the response
         let wordDefinitions = [];
         response.forEach((dictionaryObject, index) => {
+            const word = dictionaryObject.word;
+            wordDefinitions.push(<h2 className="word" key={index}>{word}</h2>);
+
             const len = dictionaryObject.meanings.length;
             
             for (let i = 0; i < len; i++){

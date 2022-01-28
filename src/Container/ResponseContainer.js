@@ -1,36 +1,39 @@
 import React, { useEffect, useState } from 'react';
 import { ResponseField } from '../Presentational/ResponseField';
+import axios from 'axios';
 
 export function ResponseContainer(props) {
     const {endpoint, setError, reload} = props;
-    const [response, setResponse] = useState("");
+    const [response, setResponse] = useState(null);
 
     useEffect(() => {
+        // not display anything when first vist the website
+        if (endpoint === null) {
+            setResponse(null);
+            return;
+        }
+
         if (endpoint === "") {
             setResponse("");
             return;
         }
         
         setResponse("Waiting");
-        
-        const xhr = new XMLHttpRequest();
-        xhr.responseType = 'json';
 
-        xhr.open('GET', endpoint);
-        xhr.send();
+        axios.get(endpoint)
+            .then(response => {
+                setResponse(response.data);
+                setError(false)
+            })
 
-        xhr.onreadystatechange = () => {
-            if (xhr.readyState === XMLHttpRequest.DONE) {
-                var status = xhr.status;
-                if (status === 0 || (status >= 200 && status < 400)) {
-                    setResponse(xhr.response);
-                    setError(false);
-                } else if (status === 404) {
+            .catch(err => {
+                if(!err.response) return;
+                const {status} = err.response;
+                if (status === 404) {
                     setResponse("Not found");
                     setError(true);
                 }
-            } 
-        };
+            })
 
     }, [endpoint, reload, setError])
 

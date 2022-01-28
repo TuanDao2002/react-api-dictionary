@@ -194,8 +194,15 @@ form {
 }
 
 #display{
-    padding: 0.4rem;
+    padding: 0 0.4rem 0.4rem 0.4rem;
     text-align: justify;
+}
+
+.word{
+    color: var(--heading-response-color);
+    font-weight: 600;
+    text-align: center;
+    font-size: 0.8rem;
 }
 
 .partOfSpeech{
