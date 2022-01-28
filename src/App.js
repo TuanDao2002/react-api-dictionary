@@ -53,6 +53,7 @@ export class App extends React.Component {
     } 
     this.setState({endpoint: url + this.state.input});
 
+    // if there is error, allow users to submit again by toggeling the "reload" state to trigger useEffect() in ResponseContainer.js
     if (this.state.error) {
       this.state.reload === 0 ? this.setState({reload: 1}) : this.setState({reload: 0});
     } 
