@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 
 export function ResponseField(props) {
+    const {response} = props;
+
     const [scrollable, setScrollable] = useState(null); // check if it can be scrollable
     const [bottom, setBottom] = useState(null);
 
@@ -9,7 +11,7 @@ export function ResponseField(props) {
     // after a new response is rendered, set the state "bottom" to false to display the message if the div is overflow
     useEffect(() => {
         setBottom(false);
-    }, [props.response]) 
+    }, [response]) 
 
     // get the new ref and check if it is scrollable
     const setElement = (element) => {
@@ -30,7 +32,6 @@ export function ResponseField(props) {
     } 
 
     const renderResponse = () => {
-        const response = props.response;
 
         if (response === null) {
             return;

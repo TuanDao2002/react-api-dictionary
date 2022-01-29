@@ -2,23 +2,27 @@ import React, { useEffect, useState } from 'react';
 import { ResponseField } from '../Presentational/ResponseField';
 import axios from 'axios';
 
+const url = "https://api.dictionaryapi.dev/api/v2/entries/en_US/";
+
 export function ResponseContainer(props) {
-    const {endpoint, setError, reload} = props;
+    const {word, setError, reload} = props;
     const [response, setResponse] = useState(null);
 
     useEffect(() => {
         // not display anything when first vist the website
-        if (endpoint === null) {
+        if (word === null) {
             setResponse(null);
             return;
         }
 
-        if (endpoint === "") {
+        if (word === "") {
             setResponse("");
             return;
         }
         
         setResponse("Waiting");
+
+        const endpoint = url + word;
 
         axios.get(endpoint)
             .then(response => {
@@ -35,7 +39,7 @@ export function ResponseContainer(props) {
                 }
             })
 
-    }, [endpoint, reload, setError])
+    }, [word, reload, setError])
 
     
     return <ResponseField response={response}/>
