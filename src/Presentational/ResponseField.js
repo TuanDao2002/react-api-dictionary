@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 
 export function ResponseField(props) {
-    const {response} = props;
+    const {result} = props;
 
     const [scrollable, setScrollable] = useState(null); // check if it can be scrollable
     const [bottom, setBottom] = useState(null);
@@ -11,7 +11,7 @@ export function ResponseField(props) {
     // after a new response is rendered, set the state "bottom" to false to display the message if the div is overflow
     useEffect(() => {
         setBottom(false);
-    }, [response]) 
+    }, [result]) 
 
     // get the new ref and check if it is scrollable
     const setElement = (element) => {
@@ -31,61 +31,61 @@ export function ResponseField(props) {
         setBottom(Math.round(scrollTop + clientHeight) >= scrollHeight - scrollDivHeight);
     } 
 
-    const renderResponse = () => {
+    // const renderResponse = () => {
 
-        if (response === null) {
-            return;
-        }
+    //     if (response === null) {
+    //         return;
+    //     }
 
-        if (response === "") {
-            return <p className='warning'>You have not typed a word</p>;
-        }
+    //     if (response === "") {
+    //         return <p className='warning'>You have not typed a word</p>;
+    //     }
 
-        if (response === "Waiting") {
-            return <h3 className="loading">Loading <i className="fa fa-spinner fa-spin"></i></h3>;
-        }
+    //     if (response === "Waiting") {
+    //         return <h3 className="loading">Loading <i className="fa fa-spinner fa-spin"></i></h3>;
+    //     }
 
-        if (response === "Not found") {
-            return(
-                <>
-                    <p className='warning'>Try again!</p>
-                    <p className='warning'>Cannot find the definition for this word</p>
-                    <p className='warning'>If due to the poor connection, submit again to refresh</p>
-                </>
-            ) 
-        }
+    //     if (response === "Not found") {
+    //         return(
+    //             <>
+    //                 <p className='warning'>Try again!</p>
+    //                 <p className='warning'>Cannot find the definition for this word</p>
+    //                 <p className='warning'>If due to the poor connection, submit again to refresh</p>
+    //             </>
+    //         ) 
+    //     }
 
-        // process and display the response
-        let wordDefinitions = [];
-        response.forEach((dictionaryObject, index) => {
-            const word = dictionaryObject.word;
-            wordDefinitions.push(<h2 className="word" key={index}>{word}</h2>);
+    //     // process and display the response
+    //     let wordDefinitions = [];
+    //     response.forEach((dictionaryObject, index) => {
+    //         const word = dictionaryObject.word;
+    //         wordDefinitions.push(<h2 className="word" key={index}>{word}</h2>);
 
-            const len = dictionaryObject.meanings.length;
+    //         const len = dictionaryObject.meanings.length;
             
-            for (let i = 0; i < len; i++){
-                const partOfSpeech = dictionaryObject.meanings[i].partOfSpeech;
-                wordDefinitions.push(<p className="partOfSpeech" key={`${index} ${i}`}>+ {partOfSpeech}:</p>);
+    //         for (let i = 0; i < len; i++){
+    //             const partOfSpeech = dictionaryObject.meanings[i].partOfSpeech;
+    //             wordDefinitions.push(<p className="partOfSpeech" key={`${index} ${i}`}>+ {partOfSpeech}:</p>);
 
-                const definitions = dictionaryObject.meanings[i].definitions;
-                let definitionsArray = []
-                definitions.forEach((element, index) => {
-                    definitionsArray.push(<p className="element" key={`child ${index}`}>{`--> ${element.definition}`}</p>);
-                });
+    //             const definitions = dictionaryObject.meanings[i].definitions;
+    //             let definitionsArray = []
+    //             definitions.forEach((element, index) => {
+    //                 definitionsArray.push(<p className="element" key={`child ${index}`}>{`--> ${element.definition}`}</p>);
+    //             });
                 
-                wordDefinitions.push(definitionsArray);
-            }
-        })
+    //             wordDefinitions.push(definitionsArray);
+    //         }
+    //     })
             
-        return <div id="display">{wordDefinitions}</div>
-    }
+    //     return <div id="display">{wordDefinitions}</div>
+    // }
 
     return (
         // use ref attribute to get the element
         <>
             <div ref={elementRef => setElement(elementRef)} id="responseField" onScroll={handleScroll}> 
                 <p id="def">Definition</p>
-                {renderResponse()}
+                {result}
 
                 {/* if the responseField is overflow and user has not scrolled to bottom, display this */}
                 {scrollable && !bottom && 
