@@ -12,3 +12,4 @@ A dictionary website using ReactJS
   * Announce users to scroll up to view all of the content if it is overflow
   * Have a loading effect (using Font Awesome) while waiting for response
 * Link to the website: https://react-dictionary.herokuapp.com/
+* Warning: Cookie must be enabled in order to use the website
