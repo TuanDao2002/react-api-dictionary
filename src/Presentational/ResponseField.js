@@ -24,61 +24,14 @@ export function ResponseField(props) {
         if (!scrollable) return;
         const { clientHeight, scrollHeight, scrollTop } = e.target;
 
-        // the height of div "scroll" + padding (px) (relatively)
-        let scrollDivHeight = 30;
+        const scrollDiv = document.getElementById("scroll");
+
+        // the height of div "scroll" + padding (px) (base on each device's viewport)
+        let scrollDivHeight = scrollDiv ? scrollDiv.offsetHeight : 0;
         
-        // rounding the values and use precision method
-        setBottom(Math.round(scrollTop + clientHeight) >= scrollHeight - scrollDivHeight);
+        // rounding the values and use precision method (minus 5px to prevent lagging)
+        setBottom(Math.round(scrollTop + clientHeight) >= scrollHeight - scrollDivHeight - 5);
     } 
-
-    // const renderResponse = () => {
-
-    //     if (response === null) {
-    //         return;
-    //     }
-
-    //     if (response === "") {
-    //         return <p className='warning'>You have not typed a word</p>;
-    //     }
-
-    //     if (response === "Waiting") {
-    //         return <h3 className="loading">Loading <i className="fa fa-spinner fa-spin"></i></h3>;
-    //     }
-
-    //     if (response === "Not found") {
-    //         return(
-    //             <>
-    //                 <p className='warning'>Try again!</p>
-    //                 <p className='warning'>Cannot find the definition for this word</p>
-    //                 <p className='warning'>If due to the poor connection, submit again to refresh</p>
-    //             </>
-    //         ) 
-    //     }
-
-    //     // process and display the response
-    //     let wordDefinitions = [];
-    //     response.forEach((dictionaryObject, index) => {
-    //         const word = dictionaryObject.word;
-    //         wordDefinitions.push(<h2 className="word" key={index}>{word}</h2>);
-
-    //         const len = dictionaryObject.meanings.length;
-            
-    //         for (let i = 0; i < len; i++){
-    //             const partOfSpeech = dictionaryObject.meanings[i].partOfSpeech;
-    //             wordDefinitions.push(<p className="partOfSpeech" key={`${index} ${i}`}>+ {partOfSpeech}:</p>);
-
-    //             const definitions = dictionaryObject.meanings[i].definitions;
-    //             let definitionsArray = []
-    //             definitions.forEach((element, index) => {
-    //                 definitionsArray.push(<p className="element" key={`child ${index}`}>{`--> ${element.definition}`}</p>);
-    //             });
-                
-    //             wordDefinitions.push(definitionsArray);
-    //         }
-    //     })
-            
-    //     return <div id="display">{wordDefinitions}</div>
-    // }
 
     return (
         // use ref attribute to get the element
