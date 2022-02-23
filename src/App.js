@@ -7,7 +7,7 @@ export class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-        theme: (window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches) ? 'light' : 'dark',
+        theme: window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark',
         word: null,
         error: false,
         reload: 0,
@@ -20,14 +20,22 @@ export class App extends React.Component {
 
   // set the theme in localStorage if there is one, otherwise use the prefer color scheme of the media
   componentDidMount() {
-    if (localStorage.getItem('theme')) {
+    try {
+      if (localStorage.getItem('theme')) {
         this.setState({theme: localStorage.getItem('theme')})
-    } 
+      } 
+    } catch(e) {
+      console.log("Cannot access local storage");
+    }
   }
 
   //store the theme in localStorage so it cannot be changed when reload
   componentDidUpdate() {
+    try {
       localStorage.setItem('theme', this.state.theme);
+    } catch(e) {
+      console.log("Cannot access local storage");
+    }
   }
 
   setTheme(theme) {
