@@ -188,7 +188,6 @@ form {
 
     top: 0;
     margin-top: 0;
-    margin-bottom: 5px;
     background-color: gray;
     width: 100%;
 }
@@ -243,6 +242,10 @@ form {
     font-size: 0.1rem;
 
     height: 10%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
 
     /* fix at the bottom of overflow div */
     position: sticky;
